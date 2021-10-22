@@ -15,5 +15,7 @@ public class EBulletStraight : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb.AddForce(player.position - transform.position * speed, ForceMode.Impulse);
+
+        Destroy(gameObject, 8f);
     }
 }

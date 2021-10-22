@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private bool targetsDestroyed;
 
     private void Awake()
     {
@@ -29,11 +31,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void TargetsGone()
+    {
+        targetsDestroyed = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(player);
+        Cursor.lockState =  CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

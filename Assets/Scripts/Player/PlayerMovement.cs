@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         MoveHorizontal();
         MoveVertical();
-        AimShooting();
+        //AimShooting();
 
         if (rb.velocity.y <= 0f)
         {
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void AimShooting()
+    /*void AimShooting()
     {
         rotation.y += Input.GetAxis("Mouse X");
         rotation.x += -Input.GetAxis("Mouse Y");
@@ -82,14 +82,14 @@ public class PlayerMovement : MonoBehaviour
             rotation.x = 90;
         }
         transform.eulerAngles = rotation;
-    }
+    }*/
 
     private void OnCollisionEnter(Collision collision)
     {
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("EnemyBullet"))
         {
@@ -97,5 +97,5 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
 
         }
-    }
+    }*/
 }

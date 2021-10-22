@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyTransportBase : MonoBehaviour
 {
     [SerializeField]
     private float amountOfHp = 1f;
-
+    [SerializeField]
+    private bool destroyed;
     [SerializeField]
     private Attributes hp = new Attributes(10);
+    
     [SerializeField]
     private EnemyHitAnim anim;
 
@@ -23,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (hp.CurrentValue <= 0)
         {
-            Destroy(gameObject);
+            DestroyTransport();
         }
         anim.PlayEffect();
     }
@@ -31,5 +33,17 @@ public class EnemyHealth : MonoBehaviour
     public float GetHP()
     {
         return hp.CurrentValue;
+    }
+
+    private void DestroyTransport()
+    {
+        destroyed = true;
+
+        //Destroy(gameObject);
+    }
+
+    public bool GetDestroyedStatus()
+    {
+        return destroyed;
     }
 }

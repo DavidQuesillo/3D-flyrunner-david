@@ -47,6 +47,14 @@ public class PlayerShoot : MonoBehaviour
                 {
                     hit.transform.GetComponent<EnemyHealth>().TakeDamage(damage);
                 }
+                if (hit.transform.CompareTag("PlayerTarget"))
+                {
+                    hit.transform.GetComponent<TargetForPlayer>().TakeDamage(damage);
+                }
+                if (hit.transform.CompareTag("EnemyTransport"))
+                {
+                    hit.transform.GetComponent<EnemyTransportBase>().TakeDamage(damage);
+                }
                 /*else if (hit.transform.CompareTag("EnemyBullet"))
                 {
                     if (hit.transform.GetComponent<EBulletHoming>() != null)
