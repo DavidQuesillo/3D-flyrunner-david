@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
+    private float amountOfHp = 1f;
+
+    [SerializeField]
     private Attributes hp = new Attributes(10);
     [SerializeField]
     private EnemyHitAnim anim;

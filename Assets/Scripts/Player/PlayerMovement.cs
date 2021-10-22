@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb.useGravity = true;
     }
 
     // Update is called once per frame
@@ -28,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
         MoveHorizontal();
         MoveVertical();
         AimShooting();
+
+        if (rb.velocity.y <= 0f)
+        {
+            rb.useGravity = false;
+        }
     }
 
     private void MoveHorizontal()

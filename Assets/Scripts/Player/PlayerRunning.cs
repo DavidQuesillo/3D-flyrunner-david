@@ -8,6 +8,7 @@ public class PlayerRunning : MonoBehaviour
     private float speed = 1f;
     [SerializeField]
     private float jumpForce = 1f;
+    private bool isGrounded;
 
     [SerializeField]
     private float goalForce = 200f;
@@ -48,7 +49,11 @@ public class PlayerRunning : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (isGrounded == true)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isGrounded = false;
+            }
         }
     }
 
@@ -73,6 +78,11 @@ public class PlayerRunning : MonoBehaviour
         if (collision.gameObject.CompareTag("Finish"))
         {
             rb.AddForce(Vector3.up * goalForce, ForceMode.Impulse);
+        }
+
+        if (collision.GetContact(0).normal.y >= 0f)
+        {
+            isGrounded = true;
         }
     }
 

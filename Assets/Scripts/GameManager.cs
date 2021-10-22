@@ -14,12 +14,19 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void SwitchModes()
+    public void SwitchModes(bool groundToSky)
     {
         //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene.)
-
-        SceneManager.LoadSceneAsync(2);
-        SceneManager.UnloadSceneAsync(1);
+        if (groundToSky)
+        {
+            SceneManager.LoadSceneAsync(2);
+            SceneManager.UnloadSceneAsync(1);
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(1);
+            SceneManager.UnloadSceneAsync(2);
+        }
     }
 
     // Start is called before the first frame update
