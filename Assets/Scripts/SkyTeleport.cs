@@ -6,6 +6,10 @@ public class SkyTeleport : MonoBehaviour
 {
     [SerializeField]
     private bool goingToSky;
+    [SerializeField]
+    private int nextStage;
+    [SerializeField]
+    private int currentStage;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +23,12 @@ public class SkyTeleport : MonoBehaviour
         {
             other.transform.position = Vector3.zero;
             other.GetComponent<PlayerGlobal>().SwitchStates(goingToSky);
-            GameManager.instance.SwitchModes(goingToSky);
+            GameManager.instance.SwitchModes(goingToSky, currentStage, nextStage);
         }
+    }
+
+    private void FinalTransition()
+    {
+
     }
 }

@@ -1,33 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField]
-    private GameObject player;
-    [SerializeField]
-    private bool targetsDestroyed;
+    public GameObject player;
+    public Text targetsDisplay;
+    public bool targetsDestroyed;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public void SwitchModes(bool groundToSky)
+    public void SwitchModes(bool groundToSky, int currentLevel, int levelToGo)
     {
         //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene.)
         if (groundToSky)
         {
-            SceneManager.LoadSceneAsync(2);
-            SceneManager.UnloadSceneAsync(1);
+            SceneManager.LoadSceneAsync(levelToGo);
+            SceneManager.UnloadSceneAsync(currentLevel);
         }
         else
         {
-            SceneManager.LoadSceneAsync(1);
-            SceneManager.UnloadSceneAsync(2);
+            SceneManager.LoadSceneAsync(levelToGo);
+            SceneManager.UnloadSceneAsync(currentLevel);
         }
     }
 

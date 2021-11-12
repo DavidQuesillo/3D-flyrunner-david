@@ -90,5 +90,14 @@ public class PlayerGlobal : MonoBehaviour
                 PlayerDeath();
             }
         }
+        if (other.transform.CompareTag("Crash"))
+        {
+            DamagePlayer(2f);
+            health = hp.CurrentValue;
+            if (hp.CurrentValue <= 0)
+            {
+                PlayerDeath();
+            }
+        }
     }
 }

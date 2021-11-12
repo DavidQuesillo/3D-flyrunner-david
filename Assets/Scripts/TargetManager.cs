@@ -10,7 +10,7 @@ public class TargetManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.instance.targetsDisplay.text = targetAmount.ToString();
     }
 
     // Update is called once per frame
@@ -22,6 +22,7 @@ public class TargetManager : MonoBehaviour
     public void TargetDestroyed()
     {
         targetAmount -= 1;
+        GameManager.instance.targetsDisplay.text = targetAmount.ToString();
         if (targetAmount <= 0)
         {
             GameManager.instance.TargetsGone();

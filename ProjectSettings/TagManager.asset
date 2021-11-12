@@ -8,6 +8,7 @@ TagManager:
   - EnemyBullet
   - PlayerTarget
   - EnemyTransport
+  - Crash
   layers:
   - Default
   - TransparentFX

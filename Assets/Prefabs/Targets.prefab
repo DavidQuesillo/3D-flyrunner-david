@@ -1303,11 +1303,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd06536b0e6e0ec48a82836dbb8e2297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceFromPlayerToSpawn: 20
   targetHeight: 40
   ascentSpeed: 1
   advanceSpeed: 1
   heightReached: 0
   rb: {fileID: 2802983976931267205}
+  mr: {fileID: 0}
+  mc: {fileID: 0}
   etb: {fileID: 6476917172248244207}
   fallDestroyTreshold: -50
 --- !u!114 &4342735623506186173
