@@ -27,6 +27,11 @@ public class Attributes
         currentValue = baseValue = newValue;
     }
 
+    public void SetCurrentValue(float newValue)
+    {
+        currentValue = Mathf.Clamp(newValue, 0, baseValue);
+    }
+
     public float AddToAttribute(float valueToAdd)
     {
         currentValue += valueToAdd;

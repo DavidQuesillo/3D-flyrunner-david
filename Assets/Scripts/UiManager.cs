@@ -1,18 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static UiManager instance;
+
+    [SerializeField] private Image HpFill;
+    [SerializeField] private Text timerTxt;
+
+    private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void UpdateUiHP(float newValue)
+    {
+        HpFill.fillAmount = newValue / 100f;
+    }
+    
+    public void SetTimerText(string timer)
+    {
+        timerTxt.text = timer;
     }
 }

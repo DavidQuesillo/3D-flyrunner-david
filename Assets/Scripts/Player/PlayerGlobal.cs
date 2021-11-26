@@ -24,7 +24,9 @@ public class PlayerGlobal : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        hp.SetNewValue(health);
+        hp.SetNewValue(100f);
+        hp.SetCurrentValue(health);
+        UiManager.instance.UpdateUiHP(hp.CurrentValue);
     }
 
     // Update is called once per frame
@@ -76,11 +78,19 @@ public class PlayerGlobal : MonoBehaviour
     public void DamagePlayer(float ouch)
     {
         hp.SubstractToAttrtibute(ouch);
+        UiManager.instance.UpdateUiHP(hp.CurrentValue);
+    }
+    public void HealPlayer(float heal)
+    {
+        //Debug.Log("healed?" + heal);
+        hp.AddToAttribute(heal);
+        health = hp.CurrentValue;
+        UiManager.instance.UpdateUiHP(hp.CurrentValue);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("EnemyBullet"))
+        /*if (other.transform.CompareTag("EnemyBullet"))
         {
             DamagePlayer(other.transform.GetComponent<EnemyBulletBase>().GetDamage());
             health = hp.CurrentValue;
@@ -89,7 +99,7 @@ public class PlayerGlobal : MonoBehaviour
             {
                 PlayerDeath();
             }
-        }
+        }*/
         if (other.transform.CompareTag("Crash"))
         {
             DamagePlayer(2f);
@@ -99,5 +109,13 @@ public class PlayerGlobal : MonoBehaviour
                 PlayerDeath();
             }
         }
+        /*if (other.CompareTag("HpDrop"))
+        {
+            HealPlayer(other.GetComponent<HpDrops>().getHealAmount());
+            health = hp.CurrentValue;
+            Destroy(other.gameObject);
+            Debug.Log("healed?");
+        }*/
+        other.GetComponent<DropsBase>()?.ConsumeDrop();
     }
 }

@@ -23,4 +23,10 @@ public class EnemyBulletBase : MonoBehaviour
     {
         return damage;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        collision.gameObject.GetComponent<PlayerGlobal>()?.DamagePlayer(damage);
+        Destroy(gameObject);
+    }
 }

@@ -9,6 +9,7 @@ TagManager:
   - PlayerTarget
   - EnemyTransport
   - Crash
+  - HpDrop
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - Bullets
+  - Enemy
   - 
   - 
   - 

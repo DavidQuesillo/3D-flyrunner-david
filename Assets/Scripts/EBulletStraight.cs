@@ -18,4 +18,9 @@ public class EBulletStraight : MonoBehaviour
 
         Destroy(gameObject, 8f);
     }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        collision.gameObject.GetComponent<PlayerGlobal>()?.DamagePlayer()
+    }*/
 }

@@ -6,9 +6,12 @@ public class TargetForPlayer : MonoBehaviour
 {
     [SerializeField]
     private float amountOfHp = 1f;
+    [SerializeField] private int dropAmount = 5;
+    [SerializeField] private float dropsExplosionForce = 1f;
 
     [SerializeField]
     private Attributes hp = new Attributes(10);
+    [SerializeField] private GameObject hpDrop;
     [SerializeField]
     private EnemyHitAnim anim;
     [SerializeField]
@@ -28,8 +31,18 @@ public class TargetForPlayer : MonoBehaviour
         if (hp.CurrentValue <= 0)
         {
             manager.TargetDestroyed();
+            DropHP();
             Destroy(gameObject);
         }
         anim.PlayEffect();
+    }
+
+    private void DropHP()
+    {
+        for (int i = 0; i < dropAmount; i++)
+        {
+            GameObject drop = Instantiate(hpDrop, transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, null);
+            drop.GetComponent<Rigidbody>().AddExplosionForce(dropsExplosionForce, transform.position, 6f, 0.1f, ForceMode.Impulse);
+        }
     }
 }
