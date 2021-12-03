@@ -112,6 +112,8 @@ MonoBehaviour:
   firingTimer: 1
   fireRate: 0.2
   fireRange: 50
+  damage: 5
+  cooldownTime: 0.5
   cannon: {fileID: 3424622867630922819}
 --- !u!1 &3424622869204020045
 GameObject:
@@ -230,6 +232,8 @@ MonoBehaviour:
   firingTimer: 1
   fireRate: 0.2
   fireRange: 50
+  damage: 1
+  cooldownTime: 1
   cannon: {fileID: 3424622867630922819}
 --- !u!114 &3424622869204020034
 MonoBehaviour:

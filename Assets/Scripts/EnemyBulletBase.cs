@@ -23,6 +23,10 @@ public class EnemyBulletBase : MonoBehaviour
     {
         return damage;
     }
+    public void SetDamage(float newDmg)
+    {
+        damage = newDmg;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

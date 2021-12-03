@@ -12,12 +12,13 @@ public class EnemyTurret : MonoBehaviour
     private float fireRate = 0.2f;
     [SerializeField]
     private float fireRange = 100f;
+    [SerializeField] private float damage = 1f;
 
     private float fireRateTimer = 0f;
     private float firingCountdown = 0f;
 
     private bool isInCooldown;
-    private float cooldownTime = 1f;
+    [SerializeField] private float cooldownTime = 1f;
     private bool playerInRange = false;
     
     [SerializeField]
@@ -77,7 +78,8 @@ public class EnemyTurret : MonoBehaviour
                 return;
             }
 
-            Instantiate(bullet, cannon.position, cannon.rotation, null);
+            GameObject shot = Instantiate(bullet, cannon.position, cannon.rotation, null);
+            shot.GetComponent<EnemyBulletBase>().SetDamage(damage);
             StartCoroutine(BeginCooldown());
     }
 

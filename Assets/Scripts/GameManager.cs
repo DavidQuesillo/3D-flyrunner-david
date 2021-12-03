@@ -36,6 +36,32 @@ public class GameManager : MonoBehaviour
         targetsDestroyed = true;
     }
 
+    public IEnumerator GameOver()
+    {
+        while (Time.timeScale > 0)
+        {
+            if ((Time.timeScale -= 0.1f) >= 0)
+            {
+                Time.timeScale -= 0.1f;
+            }
+            else
+            {
+                Time.timeScale = 0f;
+            }
+
+            /*if (Time.timeScale <= 0f)
+            {
+
+            }*/
+            Debug.Log("slowing down");
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+        Time.timeScale = 0;
+        UiManager.instance.DisplayGameOver();
+        player.enabled = false;
+        Debug.Log("UI up");
+    }
+
     // Start is called before the first frame update
     void Start()
     {

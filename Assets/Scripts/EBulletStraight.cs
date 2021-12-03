@@ -9,6 +9,7 @@ public class EBulletStraight : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
     private Transform player;
+    //private float damage = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,16 @@ public class EBulletStraight : MonoBehaviour
 
         Destroy(gameObject, 8f);
     }
+
+    /*public void setDamage(float newDmg)
+    {
+        damage = newDmg;
+    }
+
+    public float getDamage()
+    {
+        return damage;
+    }*/
 
     /*private void OnCollisionEnter(Collision collision)
     {

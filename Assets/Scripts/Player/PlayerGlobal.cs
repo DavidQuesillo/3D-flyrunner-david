@@ -17,6 +17,9 @@ public class PlayerGlobal : MonoBehaviour
     private PlayerMovement pm;
     [SerializeField]
     private PlayerRunning pr;
+    [SerializeField] private PlayerShoot ps;
+    [SerializeField] private GameObject deathExplosion;
+    private CapsuleCollider cs;
 
     Vector2 rotation = Vector2.zero;
 
@@ -24,6 +27,7 @@ public class PlayerGlobal : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        cs = GetComponent<CapsuleCollider>();
         hp.SetNewValue(100f);
         hp.SetCurrentValue(health);
         UiManager.instance.UpdateUiHP(hp.CurrentValue);
@@ -72,13 +76,22 @@ public class PlayerGlobal : MonoBehaviour
 
     public void PlayerDeath()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        StartCoroutine(GameManager.instance.GameOver());
+        cs.enabled = false;
+        ps.enabled = false;
+        Debug.Log("player dies");
     }
 
     public void DamagePlayer(float ouch)
     {
         hp.SubstractToAttrtibute(ouch);
+        health = hp.CurrentValue;
         UiManager.instance.UpdateUiHP(hp.CurrentValue);
+        if (hp.CurrentValue <= 0)
+        {
+            PlayerDeath();
+        }
     }
     public void HealPlayer(float heal)
     {
@@ -103,11 +116,6 @@ public class PlayerGlobal : MonoBehaviour
         if (other.transform.CompareTag("Crash"))
         {
             DamagePlayer(2f);
-            health = hp.CurrentValue;
-            if (hp.CurrentValue <= 0)
-            {
-                PlayerDeath();
-            }
         }
         /*if (other.CompareTag("HpDrop"))
         {

@@ -19,6 +19,13 @@ public class PlayerShoot : MonoBehaviour
     private GameObject bulletPrefab;*/
     
     public Transform cam;
+    [SerializeField] private AudioSource aus;
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioClip noDamageClip;
+    [SerializeField] private AudioClip missClip;
+    [SerializeField] private GameObject hitDamageEffect;
+    [SerializeField] private GameObject hitNoDamageEffect;
+    [SerializeField] private GameObject missEffect;
 
 
     // Start is called before the first frame update
@@ -46,14 +53,25 @@ public class PlayerShoot : MonoBehaviour
                 if (hit.transform.CompareTag("Enemy"))
                 {
                     hit.transform.GetComponent<EnemyHealth>().TakeDamage(damage);
+                    Instantiate(hitDamageEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    aus.PlayOneShot(hitClip);
+                    //Debug.Log("hit an enemy");
                 }
-                if (hit.transform.CompareTag("PlayerTarget"))
+                else if (hit.transform.CompareTag("PlayerTarget"))
                 {
                     hit.transform.GetComponent<TargetForPlayer>().TakeDamage(damage);
+                    Instantiate(hitDamageEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    aus.PlayOneShot(hitClip);
                 }
-                if (hit.transform.CompareTag("EnemyTransport"))
+                /*if (hit.transform.CompareTag("EnemyTransport"))
                 {
                     hit.transform.GetComponent<EnemyTransportBase>().TakeDamage(damage);
+                }*/
+                else
+                {
+                    Instantiate(missEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    aus.PlayOneShot(missClip);
+                    //Debug.Log("hit a wall");
                 }
                 /*else if (hit.transform.CompareTag("EnemyBullet"))
                 {
