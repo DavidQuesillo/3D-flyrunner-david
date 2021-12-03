@@ -10,10 +10,13 @@ public class GameManager : MonoBehaviour
     public PlayerGlobal player;
     public Text targetsDisplay;
     public bool targetsDestroyed;
+    public SaveGame savedGame;
 
     private void Awake()
     {
         instance = this;
+
+        savedGame = DataManager.LoadSave();
     }
 
     public void SwitchModes(bool groundToSky, int currentLevel, int levelToGo)
@@ -34,6 +37,13 @@ public class GameManager : MonoBehaviour
     public void TargetsGone()
     {
         targetsDestroyed = true;
+        savedGame.hp = 2f;
+        DataManager.SaveData(savedGame);
+    }
+
+    public void Retry()
+    {
+
     }
 
     public IEnumerator GameOver()

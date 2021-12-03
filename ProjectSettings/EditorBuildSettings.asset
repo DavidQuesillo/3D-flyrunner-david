@@ -9,9 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/GlobalScene.unity
     guid: a2d4342a68e2b3b4497fbe7b25a85a2d
   - enabled: 1
-    path: Assets/Scenes/Run Scene1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Fly Scene1 new.unity
+    guid: 76032f528d1573843afaf1ab5e6d0577
   - enabled: 1
+    path: Assets/Scenes/RunScene2.unity
+    guid: 934ad4f5271011243b587244c9b8167d
+  - enabled: 1
+    path: Assets/Scenes/Run Scene3.unity
+    guid: 68afdc60880104c47829d5b7ce26313e
+  - enabled: 0
     path: Assets/Scenes/Fly Scene1.unity
     guid: 45c11352a230c6f479abf47fe55796b0
+  - enabled: 0
+    path: Assets/Scenes/Run Scene1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

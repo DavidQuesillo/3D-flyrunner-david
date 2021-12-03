@@ -19,7 +19,7 @@ public class EnemyTurret : MonoBehaviour
 
     private bool isInCooldown;
     [SerializeField] private float cooldownTime = 1f;
-    private bool playerInRange = false;
+    /*[HideInInspector]*/ public bool playerInRange = false;
     
     [SerializeField]
     private Transform cannon;
