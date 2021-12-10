@@ -44,4 +44,8 @@ public class Attributes
         currentValue = Mathf.Clamp(currentValue, 0, baseValue);
         return currentValue;
     }
+    public void ResetToInitialValue()
+    {
+        currentValue = baseValue;
+    }
 }

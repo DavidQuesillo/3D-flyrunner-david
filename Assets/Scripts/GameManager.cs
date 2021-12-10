@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public enum EGameStates { Gameplay, Restart, GameOver}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -11,12 +13,21 @@ public class GameManager : MonoBehaviour
     public Text targetsDisplay;
     public bool targetsDestroyed;
     public SaveGame savedGame;
+    public EGameStates currentState = EGameStates.Gameplay;
+    public delegate void FNotifyGameStateChange(EGameStates newGameState);
+    public static event FNotifyGameStateChange OnGameStageChange;
 
     private void Awake()
     {
         instance = this;
 
         savedGame = DataManager.LoadSave();
+    }
+
+    public void ChangeGameState(EGameStates newState)
+    {
+        currentState = newState;
+        OnGameStageChange?.Invoke(currentState);
     }
 
     public void SwitchModes(bool groundToSky, int currentLevel, int levelToGo)
@@ -67,23 +78,44 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
         }
         Time.timeScale = 0;
+        ChangeGameState(EGameStates.GameOver);
         UiManager.instance.DisplayGameOver();
-        player.enabled = false;
+        //player.enabled = false;
         Debug.Log("UI up");
     }
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(player);
-        Cursor.lockState =  CursorLockMode.Confined;
+        Cursor.lockState =  CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Z) && currentState == EGameStates.GameOver)
+        {
+            Debug.Log("retry press");
+            StartCoroutine(RetryStage());
+        }
+    }
+
+    public IEnumerator RetryStage()
+    {
+        if (currentState == EGameStates.GameOver)
+        {
+            Debug.Log("retry press");
+            ChangeGameState(EGameStates.Restart);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            yield return new WaitForSecondsRealtime(1f);
+            Time.timeScale = 1f;
+            ChangeGameState(EGameStates.Gameplay);
+        }
+
     }
 }

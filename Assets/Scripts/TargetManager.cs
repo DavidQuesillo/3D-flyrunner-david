@@ -10,6 +10,36 @@ public class TargetManager : MonoBehaviour
     private float startingTime;
     [SerializeField] private GameObject[] targets = new GameObject[1];
 
+    /*private void OnEnable()
+    {
+        GameManager.OnGameStageChange += GameManager_OnGameStageChange;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnGameStageChange -= GameManager_OnGameStageChange;
+    }
+
+    private void GameManager_OnGameStageChange(EGameStates newGameState)
+    {
+        switch (newGameState)
+        {
+            case EGameStates.Gameplay:
+                break;
+            case EGameStates.Restart:
+                for (int i = 0; i < targets.Length; i++)
+                {
+                    targets[i].SetActive(true);
+                    targets[i].GetComponent<TargetForPlayer>().ResetHealth();
+                }
+                timerToVanish = startingTime;
+                UiManager.instance.SetTimerText(timerToVanish.ToString("f0"));
+                UiManager.instance.VisualTimer(timerToVanish / startingTime);
+                break;
+            case EGameStates.GameOver:
+                break;
+        }
+    }*/
+
     // Start is called before the first frame update
     void Start()
     {

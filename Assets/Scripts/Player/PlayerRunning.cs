@@ -8,7 +8,7 @@ public class PlayerRunning : MonoBehaviour
     private float speed = 1f;
     [SerializeField]
     private float jumpForce = 1f;
-    private bool isGrounded;
+    [SerializeField] private bool isGrounded;
 
     [SerializeField]
     private float goalForce = 200f;
@@ -40,9 +40,12 @@ public class PlayerRunning : MonoBehaviour
 
         cam = Camera.main.transform;
         Vector3 direction = cam.forward * v + cam.right * h; //new Vector3(h, 0, v);
+        //direction.y = 0f;
         Vector3 finalvelocity = direction * speed;
         finalvelocity.y = rb.velocity.y;
         rb.velocity = finalvelocity;
+
+        //rb.AddForce(direction * speed, ForceMode.Acceleration);
     }
 
     private void Jump()
@@ -51,7 +54,7 @@ public class PlayerRunning : MonoBehaviour
         {
             if (isGrounded == true)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                 isGrounded = false;
             }
         }

@@ -6,6 +6,7 @@ public class TargetForPlayer : MonoBehaviour
 {
     [SerializeField]
     private float amountOfHp = 1f;
+    private float startHp;
     [SerializeField] private int dropAmount = 5;
     [SerializeField] private float dropsExplosionForce = 1f;
 
@@ -21,6 +22,7 @@ public class TargetForPlayer : MonoBehaviour
     void Start()
     {
         hp.SetNewValue(amountOfHp);
+        startHp = amountOfHp;
     }
 
     public void TakeDamage(float ouch)
@@ -32,11 +34,14 @@ public class TargetForPlayer : MonoBehaviour
         {
             manager.TargetDestroyed();
             DropHP();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         anim.PlayEffect();
     }
-
+    public void ResetHealth()
+    {
+        hp.SetNewValue(startHp);
+    }
     private void DropHP()
     {
         for (int i = 0; i < dropAmount; i++)

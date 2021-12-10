@@ -33,6 +33,41 @@ public class PlayerGlobal : MonoBehaviour
         UiManager.instance.UpdateUiHP(hp.CurrentValue);
     }
 
+    private void OnEnable()
+    {
+        GameManager.OnGameStageChange += GameManager_OnGameStageChange;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnGameStageChange -= GameManager_OnGameStageChange;
+    }
+
+    private void GameManager_OnGameStageChange(EGameStates newGameState)
+    {
+        switch (newGameState)
+        {
+            case EGameStates.Gameplay:
+                break;
+            case EGameStates.Restart:
+                RestartPlayer();
+                break;
+            case EGameStates.GameOver:
+                break;
+            //default:
+        }
+    }
+    public void RestartPlayer()
+    {
+        hp.ResetToInitialValue();
+        UiManager.instance.UpdateUiHP(hp.CurrentValue);
+        cs.enabled = true;
+        ps.enabled = true;
+        transform.position = Vector3.zero;
+        Debug.Log("player restart");
+    }
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -60,18 +95,21 @@ public class PlayerGlobal : MonoBehaviour
 
     void AimShooting()
     {
-        rotation.y += Input.GetAxis("Mouse X");
-        rotation.x += -Input.GetAxis("Mouse Y");
-        //Mathf.Clamp(rotation.x, -90f, 90f);
-        if (rotation.x <= -90)
+        if (GameManager.instance.currentState == EGameStates.Gameplay)
         {
-            rotation.x = -90;
+            rotation.y += Input.GetAxis("Mouse X");
+            rotation.x += -Input.GetAxis("Mouse Y");
+            //Mathf.Clamp(rotation.x, -90f, 90f);
+            if (rotation.x <= -90)
+            {
+                rotation.x = -90;
+            }
+            if (rotation.x >= 90)
+            {
+                rotation.x = 90;
+            }
+            transform.eulerAngles = rotation;
         }
-        if (rotation.x >= 90)
-        {
-            rotation.x = 90;
-        }
-        transform.eulerAngles = rotation;
     }
 
     public void PlayerDeath()

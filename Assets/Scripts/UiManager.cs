@@ -18,10 +18,28 @@ public class UiManager : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        GameManager.OnGameStageChange += GameManager_OnGameStageChange;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStageChange -= GameManager_OnGameStageChange;
+    }
+
+    private void GameManager_OnGameStageChange(EGameStates newGameState)
+    {
+        switch (newGameState)
+        {
+            case EGameStates.Gameplay:
+                break;
+            case EGameStates.Restart:
+                DisplayGameOver(false);
+                break;
+            case EGameStates.GameOver:
+                break;
+        }
     }
 
     public void UpdateUiHP(float newValue)
@@ -38,8 +56,8 @@ public class UiManager : MonoBehaviour
         timerFill.fillAmount = amount;
     }
 
-    public void DisplayGameOver()
+    public void DisplayGameOver(bool show = true)
     {
-        gameOverCanvas.SetActive(true);
+        gameOverCanvas.SetActive(show);
     }
 }

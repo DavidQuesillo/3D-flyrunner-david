@@ -117,7 +117,7 @@ MonoBehaviour:
   firingTimer: 1
   fireRate: 0.2
   fireRange: 50
-  damage: 1
+  damage: 10
   cooldownTime: 1
   playerInRange: 0
   cannon: {fileID: 3789172171741733396}

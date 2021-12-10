@@ -6,6 +6,7 @@ public class EnemyBumper : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;   
     [SerializeField] private float range = 10f;
+    [SerializeField] private float bumpPower = 10f;
     [SerializeField] private bool playerInRange;
 
 
@@ -47,7 +48,7 @@ public class EnemyBumper : MonoBehaviour
 
     private void ChasePlayer()
     {
-        rb.AddForce(Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, speed));
+        rb.AddForce((GameManager.instance.player.transform.position - transform.position).normalized * speed);
     }
 
 
@@ -56,6 +57,14 @@ public class EnemyBumper : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Rigidbody>().AddForce((GameManager.instance.player.transform.position - transform.position).normalized * bumpPower, ForceMode.VelocityChange);
         }
     }
 }

@@ -10,6 +10,7 @@ public class SaveGame
 {
     public int level;
     public float hp;
+    public bool isFlying;
 
 }
 
