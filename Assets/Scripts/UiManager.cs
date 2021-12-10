@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] private Image HpFill;
     [SerializeField] private Text timerTxt;
+    [SerializeField] private Image timerFill;
     [SerializeField] private GameObject gameOverCanvas;
 
     private void Awake()
@@ -31,6 +32,10 @@ public class UiManager : MonoBehaviour
     public void SetTimerText(string timer)
     {
         timerTxt.text = timer;
+    }
+    public void VisualTimer(float amount)
+    {
+        timerFill.fillAmount = amount;
     }
 
     public void DisplayGameOver()

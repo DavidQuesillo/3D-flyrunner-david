@@ -20,6 +20,7 @@ public class PlayerShoot : MonoBehaviour
     
     public Transform cam;
     [SerializeField] private AudioSource aus;
+    [SerializeField] private AudioClip shootClip;
     [SerializeField] private AudioClip hitClip;
     [SerializeField] private AudioClip noDamageClip;
     [SerializeField] private AudioClip missClip;
@@ -47,6 +48,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            aus.PlayOneShot(shootClip);
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
             {
@@ -62,6 +64,11 @@ public class PlayerShoot : MonoBehaviour
                     hit.transform.GetComponent<TargetForPlayer>().TakeDamage(damage);
                     Instantiate(hitDamageEffect, hit.point, Quaternion.LookRotation(hit.normal));
                     aus.PlayOneShot(hitClip);
+                }
+                else if (hit.transform.CompareTag("Invincible"))
+                {
+                    Instantiate(hitNoDamageEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    aus.PlayOneShot(noDamageClip);
                 }
                 /*if (hit.transform.CompareTag("EnemyTransport"))
                 {

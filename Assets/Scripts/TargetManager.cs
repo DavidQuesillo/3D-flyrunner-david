@@ -7,6 +7,7 @@ public class TargetManager : MonoBehaviour
 {
     private int targetAmount = 1;
     [SerializeField] private float timerToVanish = 30f;
+    private float startingTime;
     [SerializeField] private GameObject[] targets = new GameObject[1];
 
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class TargetManager : MonoBehaviour
     {
         //GameManager.instance.targetsDisplay.text = timerToVanish.ToString(@"mm\:ss");
         targetAmount = targets.Length;
+        startingTime = timerToVanish;
         StartCoroutine(CountTimerDown());
     }
 
@@ -41,8 +43,8 @@ public class TargetManager : MonoBehaviour
     {
         while (timerToVanish > 0f)
         {
-            var ts = TimeSpan.FromSeconds(timerToVanish);
-            UiManager.instance.SetTimerText(string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds));
+            UiManager.instance.SetTimerText(timerToVanish.ToString("f0"));
+            UiManager.instance.VisualTimer(timerToVanish / startingTime);
             timerToVanish -= 1f;
             yield return new WaitForSeconds(1f);
         }

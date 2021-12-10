@@ -47,7 +47,7 @@ public class EnemyTurret : MonoBehaviour
     {
         Vector3 directionToPlayer = (transform.position - player.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-        transform.rotation = Quaternion.Euler(transform.rotation.x, targetRotation.eulerAngles.y, transform.rotation.z);
+        cannon.rotation = Quaternion.Euler(transform.rotation.x, targetRotation.eulerAngles.y, transform.rotation.z);
     }
 
     void CheckRange()
