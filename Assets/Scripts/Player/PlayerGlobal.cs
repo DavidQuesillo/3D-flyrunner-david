@@ -21,6 +21,8 @@ public class PlayerGlobal : MonoBehaviour
     [SerializeField] private GameObject deathExplosion;
     private CapsuleCollider cs;
 
+    //public Transform cam;
+
     Vector2 rotation = Vector2.zero;
 
     // Start is called before the first frame update
@@ -71,7 +73,7 @@ public class PlayerGlobal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AimShooting();
+        //AimShooting();
     }
 
     public void SwitchStates(bool areWeFlying)
@@ -93,14 +95,19 @@ public class PlayerGlobal : MonoBehaviour
         }
     }
 
-    void AimShooting()
+    /*void AimShooting()
     {
         if (GameManager.instance.currentState == EGameStates.Gameplay)
         {
+            cam = Camera.main.transform;
+
             rotation.y += Input.GetAxis("Mouse X");
             rotation.x += -Input.GetAxis("Mouse Y");
+
+            //cam.SetPositionAndRotation(cam.position, new Quaternion(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), cam.rotation.y, cam.rotation.z));
+
             //Mathf.Clamp(rotation.x, -90f, 90f);
-            if (rotation.x <= -90)
+            if (cam.rotation.x <= -90)
             {
                 rotation.x = -90;
             }
@@ -111,7 +118,7 @@ public class PlayerGlobal : MonoBehaviour
             transform.eulerAngles = rotation;
         }
     }
-
+    */
     public void PlayerDeath()
     {
         //Destroy(gameObject);

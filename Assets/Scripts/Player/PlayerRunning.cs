@@ -39,13 +39,13 @@ public class PlayerRunning : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         cam = Camera.main.transform;
-        Vector3 direction = cam.forward * v + cam.right * h; //new Vector3(h, 0, v);
+        Vector3 direction = cam.forward * v + cam.right * h; // new Vector3(cam.forward.x * v, 0, cam.right.z * h);
         //direction.y = 0f;
         Vector3 finalvelocity = direction * speed;
         finalvelocity.y = rb.velocity.y;
         rb.velocity = finalvelocity;
 
-        //rb.AddForce(direction * speed, ForceMode.Acceleration);
+        //rb.AddForce(finalvelocity, ForceMode.VelocityChange);
     }
 
     private void Jump()
