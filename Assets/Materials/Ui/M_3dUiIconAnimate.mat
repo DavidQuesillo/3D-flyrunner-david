@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_3dUiIconAnimate
+  m_Shader: {fileID: -6465566751694194690, guid: ddb9a9faee90ecc44be3501698f8debd, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_1AB18115:
+        m_Texture: {fileID: 2800000, guid: 0ee96430f2c57a44c9b160a53baccfd9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - Color_772A3C17: {r: 0.990566, g: 0.9765486, b: 0.9765486, a: 0}
+    - Vector2_8EAB7AD6: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

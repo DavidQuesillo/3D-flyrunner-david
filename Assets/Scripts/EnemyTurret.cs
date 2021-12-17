@@ -61,11 +61,14 @@ public class EnemyTurret : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(cannon.position, player.position - cannon.position, out hit))
                 {
-                    playerInRange = true;
-                }
-                else
-                {
-                    playerInRange = false;
+                    if (hit.collider.transform.GetInstanceID() == player.GetInstanceID())
+                    {
+                        playerInRange = true;
+                    }
+                    else
+                    {
+                        playerInRange = false;
+                    }
                 }
             }
         }

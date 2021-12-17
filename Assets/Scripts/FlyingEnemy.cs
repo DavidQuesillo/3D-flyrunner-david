@@ -6,10 +6,9 @@ public class FlyingEnemy : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody rb;
-    [SerializeField]
-    private float movePush = 1f;
-    [SerializeField]
-    private float waitTime = 1f;
+    [SerializeField] private float movePush = 1f;
+    [SerializeField] private float waitTime = 1f;
+    [SerializeField] private float preferredDistance = 20f;
     private bool chaseStarted = false;
     private EnemyTurret et;
 
@@ -32,14 +31,24 @@ public class FlyingEnemy : MonoBehaviour
 
     void AdvanceThroughWorld()
     {
-        rb.AddForce(new Vector3(Random.Range(-movePush / 2, movePush / 2), Random.Range(-movePush / 2, movePush / 2), movePush));
+        if (transform.position.z - GameManager.instance.player.transform.position.z < preferredDistance)
+        {
+            rb.AddForce(new Vector3(Random.Range(-movePush / 2, movePush / 2), Random.Range(-movePush / 2, movePush / 2), movePush));
+        }
+        else
+        {
+            rb.AddForce(new Vector3(Random.Range(-movePush / 2, movePush / 2), Random.Range(-movePush / 2, movePush / 2), movePush));
+        }
+        
         StartCoroutine(WaitForNextPush());
         Debug.Log("Moving");
     }
 
     IEnumerator WaitForNextPush()
     {
-        yield return new WaitForSeconds(waitTime);
-        AdvanceThroughWorld();
+
+            yield return new WaitForSeconds(waitTime);
+            AdvanceThroughWorld();
+        
     }
 }

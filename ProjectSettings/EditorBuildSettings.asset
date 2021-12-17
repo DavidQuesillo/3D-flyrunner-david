@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 39add9ec2cd65ab448c1549ff9b59c99
   - enabled: 1
+    path: Assets/Scenes/tutorials/TutorialLand.unity
+    guid: 119777addaa97f542a6d1a96f2f50084
+  - enabled: 1
+    path: Assets/Scenes/tutorials/TutorialFly.unity
+    guid: 2711df6fb395eb74092cf42bfaa1a8a0
+  - enabled: 1
     path: Assets/Scenes/RunScene2.unity
     guid: 934ad4f5271011243b587244c9b8167d
   - enabled: 1
@@ -20,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Run Scene3.unity
     guid: 68afdc60880104c47829d5b7ce26313e
+  - enabled: 1
+    path: Assets/Scenes/FlyScene2.unity
+    guid: b68835b4cecfb9b4e9fdf117c1a40827
   - enabled: 0
     path: Assets/Scenes/Fly Scene1.unity
     guid: 45c11352a230c6f479abf47fe55796b0

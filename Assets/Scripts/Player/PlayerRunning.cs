@@ -9,6 +9,8 @@ public class PlayerRunning : MonoBehaviour
     [SerializeField]
     private float jumpForce = 1f;
     [SerializeField] private bool isGrounded;
+    private float groundedTimer = 0.1f;
+    private bool countingForGround;
 
     [SerializeField]
     private float goalForce = 200f;
@@ -31,6 +33,16 @@ public class PlayerRunning : MonoBehaviour
         MoveHorizontal();
         //AimShooting();
         Jump();
+
+        if (countingForGround)
+        {
+            groundedTimer -= Time.deltaTime;
+            if (groundedTimer <= 0f)
+            {
+                countingForGround = false;
+                groundedTimer = 0.1f;
+            }
+        }
     }
 
     private void MoveHorizontal()
@@ -56,6 +68,7 @@ public class PlayerRunning : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                 isGrounded = false;
+                countingForGround = true;
             }
         }
     }
@@ -82,8 +95,11 @@ public class PlayerRunning : MonoBehaviour
         {
             rb.AddForce(Vector3.up * goalForce, ForceMode.Impulse);
         }
+    }
 
-        if (collision.GetContact(0).normal.y >= 0f)
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.GetContact(0).normal.y > 0f && collision.GetContact(0).normal.y < 180f && !countingForGround)
         {
             isGrounded = true;
         }
