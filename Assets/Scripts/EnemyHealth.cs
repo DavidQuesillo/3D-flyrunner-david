@@ -25,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        anim.PlayEffect();
+            anim?.PlayEffect();
     }
 
     public float GetHP()

@@ -18,8 +18,9 @@ public class PlayerRunning : MonoBehaviour
     public Transform cam;
     [SerializeField]
     private Rigidbody rb;
-    [SerializeField]
+    //[SerializeField]
     private PlayerGlobal pg;
+    [SerializeField] private Animator weaponAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,15 @@ public class PlayerRunning : MonoBehaviour
         Vector3 finalvelocity = direction * speed;
         finalvelocity.y = rb.velocity.y;
         rb.velocity = finalvelocity;
+
+        if (h != 0f || v != 0f)
+        {
+            weaponAnim.SetBool("walking", true);
+        }
+        else
+        {
+            weaponAnim.SetBool("walking", false);
+        }
 
         //rb.AddForce(finalvelocity, ForceMode.VelocityChange);
     }

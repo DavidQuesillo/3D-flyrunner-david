@@ -20,13 +20,16 @@ public class PlayerShoot : MonoBehaviour
     
     public Transform cam;
     [SerializeField] private AudioSource aus;
+    [SerializeField] private Animator canonAnim;
     [SerializeField] private AudioClip shootClip;
-    [SerializeField] private AudioClip hitClip;
+    /*[SerializeField] private AudioClip hitClip;
     [SerializeField] private AudioClip noDamageClip;
-    [SerializeField] private AudioClip missClip;
+    [SerializeField] private AudioClip missClip;*/
     [SerializeField] private GameObject hitDamageEffect;
     [SerializeField] private GameObject hitNoDamageEffect;
     [SerializeField] private GameObject missEffect;
+    [SerializeField] private GameObject firingEffect;
+    [SerializeField] private Transform canonTip;
 
 
     // Start is called before the first frame update
@@ -49,6 +52,8 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             aus.PlayOneShot(shootClip);
+            canonAnim.SetTrigger("fire");
+            Instantiate(firingEffect, canonTip);
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
             {
@@ -56,19 +61,19 @@ public class PlayerShoot : MonoBehaviour
                 {
                     hit.transform.GetComponent<EnemyHealth>().TakeDamage(damage);
                     Instantiate(hitDamageEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                    aus.PlayOneShot(hitClip);
+                    //aus.PlayOneShot(hitClip);
                     //Debug.Log("hit an enemy");
                 }
                 else if (hit.transform.CompareTag("PlayerTarget"))
                 {
                     hit.transform.GetComponent<TargetForPlayer>().TakeDamage(damage);
                     Instantiate(hitDamageEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                    aus.PlayOneShot(hitClip);
+                    //aus.PlayOneShot(hitClip);
                 }
                 else if (hit.transform.CompareTag("Invincible"))
                 {
                     Instantiate(hitNoDamageEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                    aus.PlayOneShot(noDamageClip);
+                    //aus.PlayOneShot(noDamageClip);
                 }
                 /*if (hit.transform.CompareTag("EnemyTransport"))
                 {
@@ -77,7 +82,7 @@ public class PlayerShoot : MonoBehaviour
                 else
                 {
                     Instantiate(missEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                    aus.PlayOneShot(missClip);
+                    //aus.PlayOneShot(missClip);
                     //Debug.Log("hit a wall");
                 }
                 /*else if (hit.transform.CompareTag("EnemyBullet"))

@@ -33,11 +33,11 @@ public class FlyingEnemy : MonoBehaviour
     {
         if (transform.position.z - GameManager.instance.player.transform.position.z < preferredDistance)
         {
-            rb.AddForce(new Vector3(Random.Range(-movePush / 2, movePush / 2), Random.Range(-movePush / 2, movePush / 2), movePush));
+            rb.AddForce(new Vector3(Random.Range(-movePush / 2, movePush / 2), Random.Range(-movePush / 2, movePush / 2), movePush), ForceMode.Impulse);
         }
         else
         {
-            rb.AddForce(new Vector3(Random.Range(-movePush / 2, movePush / 2), Random.Range(-movePush / 2, movePush / 2), movePush));
+            rb.AddForce(new Vector3(Random.Range(-movePush / 2, movePush / 2), Random.Range(-movePush / 2, movePush / 2), -movePush), ForceMode.Impulse);
         }
         
         StartCoroutine(WaitForNextPush());

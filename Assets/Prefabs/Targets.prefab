@@ -4977,3 +4977,4 @@ MonoBehaviour:
   timerToVanish: 30
   targets:
   - {fileID: 0}
+  retrieveFX: {fileID: 3971915920520725202, guid: c3f410da359de9b4db0ea59a34e8f910, type: 3}

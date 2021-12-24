@@ -989,7 +989,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1abdbba98f8ab9e4c99e138c1480ceaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1118,8 +1118,8 @@ MonoBehaviour:
   advanceSpeed: 1
   heightReached: 0
   rb: {fileID: 7194935103897828945}
-  mr: {fileID: 0}
-  mc: {fileID: 0}
+  mr: {fileID: 5594041897530815200}
+  mc: {fileID: 6234596292615701546}
   etb: {fileID: 2079846721305903931}
   fallDestroyTreshold: -50
 --- !u!114 &8753809390115332969
@@ -1135,6 +1135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfHp: 10
+  dropAmount: 5
+  dropsExplosionForce: 1
+  hpDrop: {fileID: 0}
   anim: {fileID: 9026500475769718152}
   manager: {fileID: 0}
 --- !u!114 &9026500475769718152

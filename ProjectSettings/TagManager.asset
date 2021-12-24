@@ -11,6 +11,7 @@ TagManager:
   - Crash
   - HpDrop
   - Invincible
+  - Instakill
   layers:
   - Default
   - TransparentFX

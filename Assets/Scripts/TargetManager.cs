@@ -9,6 +9,7 @@ public class TargetManager : MonoBehaviour
     [SerializeField] private float timerToVanish = 30f;
     private float startingTime;
     [SerializeField] private GameObject[] targets = new GameObject[1];
+    [SerializeField] private GameObject retrieveFX;
 
     /*private void OnEnable()
     {
@@ -66,21 +67,28 @@ public class TargetManager : MonoBehaviour
         if (targetAmount <= 0)
         {
             GameManager.instance.TargetsGone();
+            StopCoroutine(CountTimerDown());
+            UiManager.instance.SetTimerText("All Gone!");
         }
     }
 
     public IEnumerator CountTimerDown()
     {
-        while (timerToVanish > 0f)
+        while (timerToVanish > 0f && targetAmount > 0)
         {
             UiManager.instance.SetTimerText(timerToVanish.ToString("f0"));
             UiManager.instance.VisualTimer(timerToVanish / startingTime);
             timerToVanish -= 1f;
             yield return new WaitForSeconds(1f);
         }
-        for (int i = 0; i < targets.Length; i++)
+        if (targetAmount > 0)
         {
-            targets[i].SetActive(false);
+            for (int i = 0; i < targets.Length; i++)
+            {
+                targets[i].SetActive(false);
+                Instantiate(retrieveFX, targets[i].transform);
+                UiManager.instance.SetTimerText("Failure");
+            }
         }
     }
 }

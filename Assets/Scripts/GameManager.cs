@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum EGameStates { Gameplay, Restart, GameOver}
+public enum EGameStates { Gameplay, Restart, GameOver, Title}
 
 public class GameManager : MonoBehaviour
 {
@@ -37,12 +37,17 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadSceneAsync(levelToGo);
             SceneManager.UnloadSceneAsync(currentLevel);
+            savedGame.isFlying = true;
         }
         else
         {
             SceneManager.LoadSceneAsync(levelToGo);
             SceneManager.UnloadSceneAsync(currentLevel);
+            savedGame.isFlying = false;
         }
+
+        savedGame.level = levelToGo;
+        DataManager.SaveData(savedGame);
     }
 
     public void TargetsGone()
@@ -98,7 +103,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && currentState == EGameStates.GameOver)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentState == EGameStates.GameOver)
         {
             Debug.Log("retry press");
             StartCoroutine(RetryStage());

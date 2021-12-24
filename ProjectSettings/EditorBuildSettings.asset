@@ -18,21 +18,21 @@ EditorBuildSettings:
     path: Assets/Scenes/tutorials/TutorialFly.unity
     guid: 2711df6fb395eb74092cf42bfaa1a8a0
   - enabled: 1
-    path: Assets/Scenes/RunScene2.unity
-    guid: 934ad4f5271011243b587244c9b8167d
+    path: Assets/Scenes/Run Scene1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Fly Scene1 new.unity
     guid: 76032f528d1573843afaf1ab5e6d0577
   - enabled: 1
-    path: Assets/Scenes/Run Scene3.unity
-    guid: 68afdc60880104c47829d5b7ce26313e
+    path: Assets/Scenes/RunScene2.unity
+    guid: 934ad4f5271011243b587244c9b8167d
   - enabled: 1
     path: Assets/Scenes/FlyScene2.unity
     guid: b68835b4cecfb9b4e9fdf117c1a40827
-  - enabled: 0
-    path: Assets/Scenes/Fly Scene1.unity
-    guid: 45c11352a230c6f479abf47fe55796b0
-  - enabled: 0
-    path: Assets/Scenes/Run Scene1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/FinalBoss.unity
+    guid: d146ca7bfafa2264bad1bb01b3ab4f03
+  - enabled: 1
+    path: Assets/Scenes/Finale.unity
+    guid: 77bbb277bc039f744b1356865ab26674
   m_configObjects: {}

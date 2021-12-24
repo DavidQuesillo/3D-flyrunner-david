@@ -10,7 +10,7 @@ Material:
   m_Name: M_Ceiling
   m_Shader: {fileID: -6465566751694194690, guid: ce9db4b726cd7f841916501be640a7c0, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -65,6 +65,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_720B4AED: 0.19
+    - Vector1_7545D1B6: 3.49
+    - Vector1_FFC0B120: 0.26
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -87,6 +89,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_F9BB8EA6: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

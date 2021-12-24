@@ -33,6 +33,7 @@ public class PlayerGlobal : MonoBehaviour
         hp.SetNewValue(100f);
         hp.SetCurrentValue(health);
         UiManager.instance.UpdateUiHP(hp.CurrentValue);
+        SwitchStates(GameManager.instance.savedGame.isFlying);
     }
 
     private void OnEnable()
@@ -161,6 +162,10 @@ public class PlayerGlobal : MonoBehaviour
         if (other.transform.CompareTag("Crash"))
         {
             DamagePlayer(2f);
+        }
+        if (other.transform.CompareTag("Instakill"))
+        {
+            PlayerDeath();
         }
         /*if (other.CompareTag("HpDrop"))
         {
