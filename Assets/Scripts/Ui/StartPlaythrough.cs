@@ -23,7 +23,7 @@ public class StartPlaythrough : MonoBehaviour
         DataManager.SaveData(blankSave);
 
         
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(1);
         SceneManager.LoadSceneAsync(2);
     }
 }
