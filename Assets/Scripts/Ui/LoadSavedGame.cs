@@ -22,7 +22,7 @@ public class LoadSavedGame : MonoBehaviour
     public void LoadGame()
     {
         loadedSave = DataManager.LoadSave();
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync(0);
         SceneManager.LoadSceneAsync(loadedSave.level);
     }
 }
